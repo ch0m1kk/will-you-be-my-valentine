@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Walentynki ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  text-align: center;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 1.6rem;
+  color: white;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+  max-width: 800px;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.buttons {
+  position: relative;
+}
+
+button {
+  padding: 12px 25px;
+  font-size: 18px;
+  margin: 10px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#yesBtn {
+  background: #ff4d6d;
+  color: white;
+}
+
+#noBtn {
+  background: white;
+  color: #ff4d6d;
+  position: absolute;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+.heart {
+  position: fixed;
+  font-size: 24px;
+  animation: fall 4s linear infinite;
+  color: #ff4d6d;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-10%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="question">
+Czy moja Bogini zostanie moją Walentynką? ❤️
+</h1>
+
+<img id="gif"
+src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif">
+
+<div class="buttons">
+<button id="yesBtn">Tak 💖</button>
+<button id="noBtn">Nie 🙈</button>
+</div>
+
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/audio/2023/09/28/audio_1b5b9bfaef.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const question = document.getElementById("question");
+const gif = document.getElementById("gif");
+const music = document.getElementById("music");
+
+const romanticGifs = [
+"https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif",
+"https://media.giphy.com/media/j5QcmXoFWl4Q0/giphy.gif",
+"https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif",
+"https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif",
+"https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif"
+];
+
+yesBtn.addEventListener("click", () => {
+
+question.innerHTML = `
+Kocham Cię, moja wspaniała Bogini.<br><br>
+
+Dziękuję Ci za te wspaniałe 3 lata — czasem burzliwe,
+szczególnie w ostatnich dniach, ale mam nadzieję,
+że będzie już tylko lepiej.<br><br>
+
+Kocham Cię najmocniej na świecie… co ja mówię —
+we wszechświecie, hahaha.<br><br>
+
+Kocham również to, jak inteligentna jesteś.
+Jakie masz wspaniałe poczucie humoru —
+nie da się ustać obok Ciebie bez uśmiechu.<br><br>
+
+Kocham Cię za brak zaradności w niektórych momentach,
+bo przynajmniej wtedy wiem, że się do czegoś przydaję.<br><br>
+
+Za Twój piękny, szczery uśmiech — szeroki,
+ale i ten „do dołu” też, hahaha.<br><br>
+
+Za Twoje piękne oczka, które mówią więcej
+niż jakiekolwiek słowa.<br><br>
+
+I za to, jaki masz zajebisty styl, laska — hahaha.<br><br>
+
+Kocham Cię najmocniej ❤️
+`;
+
+gif.src =
+"https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif";
+
+yesBtn.style.display = "none";
+noBtn.style.display = "none";
+
+music.play();
+setInterval(createHeart, 300);
+});
+
+noBtn.addEventListener("mouseover", () => {
+const x = Math.random() * (window.innerWidth - 100);
+const y = Math.random() * (window.innerHeight - 50);
+noBtn.style.left = `${x}px`;
+noBtn.style.top = `${y}px`;
+
+const randomGif =
+romanticGifs[Math.floor(Math.random() * romanticGifs.length)];
+gif.src = randomGif;
+});
+
+function createHeart() {
+const heart = document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML = "❤️";
+
+heart.style.left = Math.random() * 100 + "vw";
+heart.style.animationDuration =
+(Math.random() * 2 + 3) + "s";
+
+document.body.appendChild(heart);
+
+setTimeout(() => {
+heart.remove();
+}, 5000);
+}
+</script>
+
+</body>
+</html>
